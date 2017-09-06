@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//@protocol LFDivideViewController <NSObjeLF>
+//@protocol LFDivideViewController <NSObject>
 //
 //
 //@end

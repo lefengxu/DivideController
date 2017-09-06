@@ -61,7 +61,7 @@
     
     // 设置控制器头部
     CGFloat screenW     = [UIScreen mainScreen].bounds.size.width;
-    LFDivideView *divideHeader = [[LFDivideView alloc]initWithFrame:CGReLFMake(0, 0, screenW, kDivideHeaderH)];
+    LFDivideView *divideHeader = [[LFDivideView alloc]initWithFrame:CGRectMake(0, 0, screenW, kDivideHeaderH)];
     [self.view addSubview:divideHeader];
     divideHeader.titles = self.titles;  // 设置标题
     divideHeader.delegate = self;
@@ -79,12 +79,12 @@
     CGFloat subViewW = self.view.bounds.size.width;
     CGFloat subViewH = self.view.bounds.size.height - kDivideHeaderH;
     for (UIViewController * vc in viewControllers) {
-        vc.view.frame = CGReLFMake(0, kDivideHeaderH, subViewW, subViewH);
+        vc.view.frame = CGRectMake(0, kDivideHeaderH, subViewW, subViewH);
     }
     
-    [self addChildViewController:[viewControllers firstObjeLF]];
-    [self.view addSubview:[[viewControllers firstObjeLF] view]];
-    self.currentVc = [viewControllers firstObjeLF];
+    [self addChildViewController:[viewControllers firstObject]];
+    [self.view addSubview:[[viewControllers firstObject] view]];
+    self.currentVc = [viewControllers firstObject];
 }
 
 #pragma mark - Data Source
@@ -93,7 +93,7 @@
     [self replaceCurrentControllerWithIndex:index];
 }
 
-#pragma mark - Target ALFion
+#pragma mark - Target Action
 #pragma mark - Network Operation
 #pragma mark - Public Method
 #pragma mark - Private Method
@@ -103,24 +103,24 @@
  @param index 控制器下标
  */
 - (void)replaceCurrentControllerWithIndex:(NSInteger)index {
-    UIViewController *seleLFedVc = self.viewControllers[index];
+    UIViewController *selectedVc = self.viewControllers[index];
     UIViewController *oldVc      = self.currentVc;
-    if (seleLFedVc == oldVc) return;           // 同一控制器则退出
+    if (selectedVc == oldVc) return;           // 同一控制器则退出
     
-    [self addChildViewController:seleLFedVc];
+    [self addChildViewController:selectedVc];
     
     __weak typeof(self) weakSelf = self;
     [self transitionFromViewController:oldVc
-                      toViewController:seleLFedVc
+                      toViewController:selectedVc
                               duration:0
                                options:UIViewAnimationOptionTransitionNone
                             animations:nil
                             completion:^(BOOL finished) {
                                 __strong typeof(weakSelf) strongSelf = weakSelf;
                                 if (finished) {
-                                    strongSelf.currentVc = seleLFedVc;
+                                    strongSelf.currentVc = selectedVc;
                                     
-                                    [seleLFedVc didMoveToParentViewController:strongSelf];
+                                    [selectedVc didMoveToParentViewController:strongSelf];
                                     [oldVc willMoveToParentViewController:nil];
                                     [oldVc removeFromParentViewController];
                                     
@@ -136,7 +136,7 @@
 - (void)setCanSwitch:(BOOL)canSwitch {
     _canSwitch = canSwitch;
     
-    self.divideHeader.userInteraLFionEnabled = canSwitch;
+    self.divideHeader.userInteractionEnabled = canSwitch;
 }
 
 

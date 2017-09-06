@@ -16,7 +16,7 @@
 
 @implementation LFDivideButton
 
-- (instancetype)initWithFrame:(CGReLF)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
@@ -25,9 +25,9 @@
     return self;
 }
 
-// Only override drawReLF: if you perform custom drawing.
-// An empty implementation adversely affeLFs performance during animation.
-- (void)drawReLF:(CGReLF)reLF {
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
     // Drawing code
     
     [self configBottomLayer];
@@ -35,7 +35,7 @@
 
 #pragma mark - Data Source
 #pragma mark - Delegate
-#pragma mark - Target ALFion
+#pragma mark - Target Action
 #pragma mark - Public Method
 #pragma mark - Private Method
 - (void)configBottomLayer {
@@ -47,16 +47,16 @@
     CGFloat y           = self.bounds.size.height - 2;
     CGFloat height      = 4;
     CGFloat width       = self.bounds.size.width;
-    bottomLayer.frame   = CGReLFMake(0, y, width, height);
+    bottomLayer.frame   = CGRectMake(0, y, width, height);
     
     // 设置颜色
-    bottomLayer.backgroundColor = self.isSeleLFed ? [UIColor orangeColor].CGColor : self.backgroundColor.CGColor;
+    bottomLayer.backgroundColor = self.isSelected ? [UIColor orangeColor].CGColor : self.backgroundColor.CGColor;
 }
 
 #pragma mark - Setter
 #pragma mark - Getter
-- (void)setSeleLFed:(BOOL)seleLFed {
-    [super setSeleLFed:seleLFed];
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
     
     [self setNeedsDisplay];
 }
