@@ -1,16 +1,9 @@
-# ProgressBar
-带动画的进度条
+# DivideController
+分页控制器
+![image](https://github.com/lefengxu/DivideController/blob/master/%E5%88%86%E9%A1%B5%E6%95%88%E6%9E%9C.png)
 
-
-##用法:  
-    ①直接导入文件<br><br>
-    ②- (instancetype)initWithViewControllers:(NSArray<UIViewController *> *)viewControllers传入需要分页的控制器<br><br>
-    ③使用该方法进行比例的配置<br>
-    (void)setRatio:(CGFloat)ratio animated:(BOOL)animated
+## 用法:  
+    ①导入头文件 #import "LFDivideViewController.h"<br><br>
+    ②初始化并传入子控制器<br>
+    - (instancetype)initWithViewControllers:(NSArray<UIViewController *> *)viewControllers<br><br>
     
-    
-##可配置属性
-    backgroundBarColor    背景颜色<br>
-    progressBarColor      进度条颜色<br>
-    insideWith            进度条内边距<br>
-    duration              动画时长<br>
