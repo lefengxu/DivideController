@@ -20,7 +20,7 @@
 
 #pragma mark - Life Cycle
 
-- (instancetype)initWithFrame:(CGReLF)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self)
     {
@@ -41,14 +41,14 @@
 
 #pragma mark - Data Source
 #pragma mark - Delegate
-#pragma mark - Target ALFion
+#pragma mark - Target Action
 - (void)clickButton:(UIButton *)button {
     // 防止重复点击
     if (self.selectedIndex == button.tag) return;
     
     self.selectedIndex = button.tag;
     
-    if ([self.delegate respondsToSeleLFor:@seleLFor(divideView:didClickButtonAtIndex:)]) {
+    if ([self.delegate respondsToSelector:@selector(divideView:didClickButtonAtIndex:)]) {
         [self.delegate divideView:self didClickButtonAtIndex:button.tag];
     }
 }
@@ -78,20 +78,20 @@
         
         LFDivideButton *button = [[LFDivideButton alloc]init];
         [self addSubview:button];
-        [self.divideButtons addObjeLF:button];
-        button.frame           = CGReLFMake(buttonX, 0, buttonW, buttonH);
+        [self.divideButtons addObject:button];
+        button.frame           = CGRectMake(buttonX, 0, buttonW, buttonH);
         button.tag = i;
         [button setTitle:titles[i] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor orangeColor] forState:UIControlStateSeleLFed];
+        [button setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button addTarget:self aLFion:@seleLFor(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         button.titleLabel.font = [UIFont systemFontOfSize:14];
 
         
         if (i!=count-1) {   // 不为最后一项时添加分割线
             UIView * separator          = [[UIView alloc]init];
             [self addSubview:separator];
-            separator.frame             = CGReLFMake(buttonX+buttonW, 0, separatorW, separatorH);
+            separator.frame             = CGRectMake(buttonX+buttonW, 0, separatorW, separatorH);
             separator.backgroundColor   = [UIColor blackColor];
         }
     }
@@ -105,12 +105,12 @@
 /**
  设置制定按钮的选定状态
 
- @param seleLFed    是否选定
+ @param selected    是否选定
  @param index       按钮下标
  */
-- (void)setDivideButtonsSeleLFed:(BOOL)seleLFed atIndex:(NSInteger)index {
+- (void)setDivideButtonsSelected:(BOOL)selected atIndex:(NSInteger)index {
     UIButton *button    = self.divideButtons[index];
-    button.seleLFed     = seleLFed;
+    button.selected     = selected;
 }
 
 #pragma mark - Setter
@@ -122,8 +122,8 @@
 }
 
 - (void)setselectedIndex:(NSInteger)selectedIndex {
-    [self setDivideButtonsSeleLFed:NO atIndex:_selectedIndex];      // 取消原选定按钮
-    [self setDivideButtonsSeleLFed:YES atIndex:selectedIndex];      // 选定新的按钮
+    [self setDivideButtonsSelected:NO atIndex:_selectedIndex];      // 取消原选定按钮
+    [self setDivideButtonsSelected:YES atIndex:selectedIndex];      // 选定新的按钮
     
     _selectedIndex = selectedIndex;
 }
